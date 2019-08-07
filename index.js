@@ -14,7 +14,7 @@ export default class App extends Component {
       surName: "swami",
       task: [],
       val: [],
-      user : ''
+      user : {}
     }
   }
   componentDidMount() {
@@ -35,8 +35,9 @@ export default class App extends Component {
       .then(res => {
         
         ;
-        console.log("Res",res.data);
-        this.setState({ user : user.res.data });
+        console.log("Res",res.data.total_count);
+        this.setState({ user : res.data });
+        console.log(this.state.user.items[0]);
       })
 
   }
@@ -65,7 +66,9 @@ export default class App extends Component {
             </li>
           ))}
         </ul>
-        <h1>Git user count by name{this.state.user.total_count}</h1>
+        <h1>Git user count {this.state.user.total_count}</h1>
+        <h1>name</h1>
+        <img src={this.state.user.items}/>
       </div>
     )
   }
