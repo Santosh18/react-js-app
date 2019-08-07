@@ -19,13 +19,13 @@ export default class App extends Component {
   }
  
 
-  add = () => {
+  add = async () => {
     // console.log(this.state.val);
     // this.state.task.push(this.state.val);
     // this.setState({ task: this.state.task });
 
     //for github users
-     axios.get(`https://api.github.com/search/users?q=${this.state.val}`)
+     await axios.get(`https://api.github.com/search/users?q=${this.state.val}`)
       .then(res => {
         console.log("Res",res.data.total_count);
         this.setState({ users : res.data.items });
