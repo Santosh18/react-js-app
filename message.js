@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export default class Message {
-   myMessage = () => {
+export default class Message extends Component{
+
     render(){
       return <h2>Suno na </h2>
     }
-  }
+  
 }
