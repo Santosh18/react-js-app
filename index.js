@@ -14,16 +14,15 @@ export default class App extends Component {
       surName: "swami",
       task: [],
       val: [],
-      user : {}
+      users : []
     }
   }
-  componentDidMount() {
-    axios.get(`https://api.github.com/search/users?q=${name}`)
-      .then(res => {
-        const user = res.data;
-        this.setState({ user });
-      })
-  }
+  // componentDidMount() {
+  //   axios.get(`https://api.github.com/search/users?q=${name}`)
+  //     .then(res => {
+  //       this.setState({ users : user.res.data.items });
+  //     })
+  // }
 
   add = () => {
     // console.log(this.state.val);
@@ -33,16 +32,14 @@ export default class App extends Component {
     //for github users
      axios.get(`https://api.github.com/search/users?q=${this.state.val}`)
       .then(res => {
-        
-        ;
         console.log("Res",res.data.total_count);
-        this.setState({ user : res.data });
-        console.log(this.state.user.items[0]);
+        this.setState({ users : res.data.items });
+        console.log(this.state.users);
       })
 
   }
   handleDelete = (e,i) => {
-    console.log("index", i);
+     console.log("index", i);
      this.state.task.splice(i, 1);
      this.setState({task : this.state.task});
   }
@@ -56,19 +53,29 @@ export default class App extends Component {
       <div>
         <h1> My name is {this.name} {this.state.surName}</h1>
         <Message surName />
-        <input type="text" onChange={this.handleChange} value={this.state.val} />
+        <input type="text" onChange={this.handleChange} 
+        value={this.state.val}/>
         <button onClick={this.add}>Add</button>
         <h2>Task list</h2>
         <ul>
             {this.state.task.map((x, i) => (
             <li>
-              {x} <button onClick={(e)=>this.handleDelete(e,i)}>Delete Task</button>
+              {x} 
+              <button onClick={(e)=>this.handleDelete(e,i)}>Delete Task</button>
             </li>
           ))}
-        </ul>
-        <h1>Git user count {this.state.user.total_count}</h1>
-        <h1>name</h1>
-        <img src={this.state.user.items}/>
+        </ul> 
+        <div>
+          <ul>
+              { this.state.users.map( (x)  =>(
+              <li>
+                <h1>name{x.login}</h1>
+                <img src={x.avatar_url} height="200px" width="200px"/>
+                <br/>
+              </li>
+              ))}
+            </ul>
+          </div>
       </div>
     )
   }
