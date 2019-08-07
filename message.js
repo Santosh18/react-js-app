@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-export default class Message extends Component{
+export default class Message extends React.Component{
 
     render(){
-      return <h2>To do App and git user search </h2>
+      return (<h2> Git user search and {this.props.dataFromParent}</h2>);
     }
   
 }

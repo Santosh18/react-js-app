@@ -11,6 +11,7 @@ export default class App extends Component {
   name = "santosh";
   constructor(props) {
     this.state = {
+      appName : 'TO Do',
       surName: "swami",
       task: [],
       val: [],
@@ -47,7 +48,7 @@ export default class App extends Component {
     return (
       <div>
         <h1> My name is {this.name} {this.state.surName}</h1>
-        <Message surName />
+        <Message dataFromParent = {this.state.appName} />
         <input type="text" onChange={this.handleChange} 
         value={this.state.val}/>
         <button onClick={this.add}>Add</button>
