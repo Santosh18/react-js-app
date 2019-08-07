@@ -22,9 +22,10 @@ export default class App extends Component {
     this.setState({ task: this.state.task });
 
   }
-  handleDelete = (i) => {
+  handleDelete = (e,i) => {
     console.log("index", i);
-    // this.state.task.splice(i, 1);
+     this.state.task.splice(i, 1);
+     this.setState({task : this.state.task});
   }
 
   handleChange = (event) => {
@@ -38,10 +39,11 @@ export default class App extends Component {
         <Message surName />
         <input type="text" onChange={this.handleChange} value={this.state.val} />
         <button onClick={this.add}>Add</button>
-        <ul>Task list
+        <h2>Task list</h2>
+        <ul>
             {this.state.task.map((x, i) => (
             <li>
-              {x} <button onClick={this.handleDelete(i)}>delete {i}</button>
+              {x} <button onClick={(e)=>this.handleDelete(e,i)}>Delete Task</button>
             </li>
           ))}
         </ul>
