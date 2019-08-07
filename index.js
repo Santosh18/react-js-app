@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Message from './message';
+import axios from 'axios';
 
 // const App = function(){
 //   return (<h1>Hello</h1>)
@@ -12,14 +13,31 @@ export default class App extends Component {
     this.state = {
       surName: "swami",
       task: [],
-      val: []
+      val: [],
+      user : ''
     }
+  }
+  componentDidMount() {
+    axios.get(`https://api.github.com/search/users?q=${name}`)
+      .then(res => {
+        const user = res.data;
+        this.setState({ user });
+      })
   }
 
   add = () => {
-    console.log(this.state.val);
-    this.state.task.push(this.state.val);
-    this.setState({ task: this.state.task });
+    // console.log(this.state.val);
+    // this.state.task.push(this.state.val);
+    // this.setState({ task: this.state.task });
+
+    //for github users
+     axios.get(`https://api.github.com/search/users?q=${this.state.val}`)
+      .then(res => {
+        
+        ;
+        console.log("Res",res.data);
+        this.setState({ user : user.res.data });
+      })
 
   }
   handleDelete = (e,i) => {
@@ -47,6 +65,7 @@ export default class App extends Component {
             </li>
           ))}
         </ul>
+        <h1>Git user count by name{this.state.user.total_count}</h1>
       </div>
     )
   }
