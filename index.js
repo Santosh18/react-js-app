@@ -17,12 +17,7 @@ export default class App extends Component {
       users : []
     }
   }
-  // componentDidMount() {
-  //   axios.get(`https://api.github.com/search/users?q=${name}`)
-  //     .then(res => {
-  //       this.setState({ users : user.res.data.items });
-  //     })
-  // }
+ 
 
   add = () => {
     // console.log(this.state.val);
