@@ -19,8 +19,13 @@ export default class App extends Component {
     }
   }
  
-
   add = async () => {
+    console.log(this.state.val);
+    this.state.task.push(this.state.val);
+    this.setState({ task: this.state.task });
+
+  }
+  search = async () => {
     // console.log(this.state.val);
     // this.state.task.push(this.state.val);
     // this.setState({ task: this.state.task });
@@ -51,7 +56,10 @@ export default class App extends Component {
         <Message dataFromParent = {this.state.appName} />
         <input type="text" onChange={this.handleChange} 
         value={this.state.val}/>
-        <button onClick={this.add}>Add</button>
+        <button onClick={this.add}>Add</button><br/><br/>
+        <input type="text" onChange={this.handleChange} 
+        value={this.state.val}/>
+        <button onClick={this.search}>search</button>
         <h2>Task list</h2>
         <ul>
             {this.state.task.map((x, i) => (
