@@ -70,6 +70,7 @@ export default class App extends Component {
           ))}
         </ul> 
         <div>
+          <h2>Search Result</h2>
           <ul>
               { this.state.users.map( (x)  =>(
               <li>
