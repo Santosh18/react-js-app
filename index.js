@@ -53,19 +53,21 @@ export default class App extends Component {
     return (
       <div>
         <h1> My name is {this.name} {this.state.surName}</h1>
-        <Message dataFromParent = {this.state.appName} />
+          <Message dataFromParent = {this.state.appName} />
         <input type="text" onChange={this.handleChange} 
-        value={this.state.val}/>
+          value={this.state.val}/>
         <button onClick={this.add}>Add</button><br/><br/>
         <input type="text" onChange={this.handleChange} 
-        value={this.state.val}/>
+          value={this.state.val}/>
         <button onClick={this.search}>search</button>
         <h2>Task list</h2>
         <ul>
             {this.state.task.map((x, i) => (
             <li>
               {x} 
-              <button onClick={(e)=>this.handleDelete(e,i)}>Delete Task</button>
+              <button onClick={(e)=>this.handleDelete(e,i)}>
+                  Delete Task
+              </button>
             </li>
           ))}
         </ul> 
